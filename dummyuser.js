@@ -26,8 +26,22 @@ function user_Disconnect(id) {
   }
 }
 
+function getRoomUsers(room) {
+  if (c_users.length === 0) {
+    return [];
+  }
+  const user = []
+  c_users.map((item)=> {
+    if (item.room === room) {
+      user.push(item.username)
+    }}
+  )
+  return user
+}
+
 module.exports = {
   join_User,
   get_Current_User,
   user_Disconnect,
+  getRoomUsers
 };

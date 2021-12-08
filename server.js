@@ -3,7 +3,7 @@ const app = express();
 const socket = require("socket.io");
 const color = require("colors");
 const cors = require("cors");
-const { get_Current_User, user_Disconnect, join_User } = require("./dummyuser");
+const { get_Current_User, user_Disconnect, join_User, getRoomUsers } = require("./dummyuser");
 app.use(express.json());
 
 const port = process.env.PORT || 8000;
@@ -35,7 +35,8 @@ io.on("connection", (socket) => {
       username: p_user.username,
       text: `Welcome ${p_user.username}`,
     });
-
+    console.log(getRoomUsers(p_user.room))
+    io.in(p_user.room).emit("roomusers", getRoomUsers(p_user.room))    
     
     socket.broadcast.to(p_user.room).emit("message", {
       userId: p_user.id,
