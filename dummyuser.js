@@ -1,8 +1,8 @@
 const c_users = [];
 
 
-function join_User(id, username, room) {
-  const p_user = { id, username, room };
+function join_User(id, username, room, avaurl) {
+  const p_user = { id, username, room, avaurl };
 
   c_users.push(p_user);
   console.log(c_users, "users");
@@ -30,13 +30,14 @@ function getRoomUsers(room) {
   if (c_users.length === 0) {
     return [];
   }
-  const user = []
+  const users = []
   c_users.map((item)=> {
     if (item.room === room) {
-      user.push(item.username)
+      user = {username: item.username, avaurl: item.avaurl}
+      users.push(user)
     }}
   )
-  return user
+  return users
 }
 
 module.exports = {
