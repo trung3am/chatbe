@@ -1,13 +1,26 @@
 const c_users = [];
 
+function check_User (p_user) {
+  const duplicate = get_Current_User(p_user.id)
+  if (!duplicate) {
+    return true;
+  }
+  if (duplicate.room !== p_user.room) {
+    return true;
+  }
+  return false;
+}
 
 function join_User(id, username, room, avaurl) {
   const p_user = { id, username, room, avaurl };
-
-  c_users.push(p_user);
-  console.log(c_users, "users");
-
-  return p_user;
+  if (check_User(p_user)) {
+    c_users.push(p_user);
+    console.log(c_users, "users");
+  
+    return p_user;
+  }
+  return
+  
 }
 
 console.log("user out", c_users);
