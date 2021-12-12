@@ -8,7 +8,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+
 
 var server = app.listen(
   port,
@@ -18,7 +18,12 @@ var server = app.listen(
   )
 );
 
-const io = socket(server);
+const io = socket(server, {
+  cors: {
+    origin: "*",
+     method: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+  }
+});
 
 
 io.on("connection", (socket) => {
