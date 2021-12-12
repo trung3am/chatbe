@@ -21,7 +21,7 @@ var server = app.listen(
 const io = socket(server, {
   cors: {
     origin: "*",
-     method: ["GET", "POST", "PUT", "DELETE", "PATCH"]
+     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
   }
 });
 
